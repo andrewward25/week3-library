@@ -2,18 +2,58 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace library
+namespace Library
 {
     public class Book
     {
-        public string Title;
-        public string Author;
-        public int ISBN;
+        //Private fields
 
+        private string title;
+        private string author;
+        private int isbn;
 
-    public void DisplayInfo()
+        //Public properties
+        public string Title
         {
-            Console.WriteLine($"Book Title: {Title}");
+            get { return title; }
+            set
+            {
+                // Check if any incoming char is a digit
+                if (!value.Any(char.IsDigit))
+                {
+                    title = value;
+                }
+                else
+                {
+                    Console.WriteLine("Cannot enter number for title");
+                }
+            }
+        }
+
+        public string Author
+        {
+            get { return author; }
+            set { author = value; }
+        }
+
+        public int ISBN
+        {
+            get { return isbn; }
+            set { isbn = value; }
+        }
+
+        //Constructor
+        public Book(string bookTitle, string bookAuthor, int bookISBN)
+        {
+            Title = bookTitle;
+            Author = bookAuthor;
+            ISBN = bookISBN;
+        }
+
+        //Methods
+        public void DisplayInfo()
+        {
+            Console.WriteLine($"Book title: {Title}");
             Console.WriteLine($"Book author: {Author}");
             Console.WriteLine($"Book ISBN: {ISBN}");
         }
